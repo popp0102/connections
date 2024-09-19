@@ -1,8 +1,11 @@
 {
-  "name": "connections",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@popp0102/connections",
+  "version": "0.0.2",
+  "main": "dist/wordle.js",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite --config config/vite.config.ts public",
     "build": "tsc -b config/tsconfig.json && vite build --config config/vite.config.ts",

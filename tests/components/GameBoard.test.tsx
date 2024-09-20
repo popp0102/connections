@@ -8,8 +8,20 @@ describe('GameBoard Component', () => {
   const handleSquareSelect = (_: number) => {};
   const foundSquares: FoundSquare[] = [];
   const boardSquares = EXAMPLE_BOARD_1;
+  const colorConfig = {
+    category: {
+      easy: 'yellow',
+      medium: 'teal',
+      hard: 'blue',
+      difficult: 'purple',
+    },
+    square: {
+      text: 'teal', 
+      background: 'cobalt',
+    }
+  };
 
-  const subject = () => { render(<GameBoard foundSquares={foundSquares} boardSquares={boardSquares} onSquareSelect={handleSquareSelect}/>, {}) };
+  const subject = () => { render(<GameBoard foundSquares={foundSquares} boardSquares={boardSquares} onSquareSelect={handleSquareSelect} colorConfig={colorConfig}/>, {}) };
 
   it('does not throw an error', () => {
     expect(subject).not.toThrow();

@@ -9,32 +9,9 @@
   .connections-board-square {
     border: 2px solid black;
     border-radius: 10px;
-    background: var(--cosmic-teal);
-    color: var(--cosmic-cobalt);
     cursor: pointer;
     height: 5rem;
   }
-
-  .selected {
-    color: var(--cosmic-teal);
-    background: var(--cosmic-cobalt);
-  }
-}
-
-.connections-easy {
-  background: var(--cosmic-yellow);
-}
-
-.connections-medium {
-  background: var(--cosmic-teal);
-}
-
-.connections-hard {
-  background: var(--cosmic-blue);
-}
-
-.connections-difficult {
-  background: var(--cosmic-purple);
 }
 
 .connections-found-row {
@@ -53,5 +30,13 @@
   p {
     text-align: center;
   }
+}
+
+@keyframes grow-shrink {
+  0% { transform: scale(1, 1); }
+  25% { transform: scale(0.5, 0.5); }
+  50% { transform: scale(1, 1); }
+  75% { transform: scale(1.5, 1.5); }
+  100% { transform: scale(1, 1); }
 }
 

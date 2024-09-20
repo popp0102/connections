@@ -63,7 +63,7 @@ export default function useConnections(initialBoard: BoardSquare[], onGameFinish
     });
 
     if (board.length <= 4) {
-      onGameFinish();
+      setTimeout(onGameFinish, 1000);
     }
   }
 

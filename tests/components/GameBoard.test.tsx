@@ -1,7 +1,8 @@
 import { render } from '@testing-library/react';
 
 import { EXAMPLE_BOARD_1 } from '../__data__/board';
-import GameBoard, { type FoundSquare } from '../../lib/components/GameBoard';
+import { type FoundSquare } from '../../lib/util/Grid';
+import GameBoard from '../../lib/components/GameBoard';
 
 describe('GameBoard Component', () => {
   const handleSquareSelect = (_: number) => {};

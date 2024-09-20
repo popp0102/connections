@@ -1,18 +1,5 @@
+import { type FoundSquare, type BoardSquare } from '@util/Grid'
 import './GameBoard.css';
-
-export type FoundSquare = {
-  category: string;
-  words: string;
-  mode: string;
-}
-
-export type BoardSquare = {
-  id: number;
-  word: string;
-  selected: boolean;
-  mode: string;
-  category: string;
-}
 
 type GameBoardParams = {
   foundSquares: FoundSquare[];

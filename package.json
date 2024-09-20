@@ -1,6 +1,6 @@
 {
   "name": "@popp0102/connections",
-  "version": "0.0.2",
+  "version": "0.9.9",
   "main": "dist/wordle.js",
   "type": "module",
   "files": [

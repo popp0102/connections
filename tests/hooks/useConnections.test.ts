@@ -6,13 +6,8 @@ import { EXAMPLE_BOARD_1 } from '../__data__/board';
 describe('useConnections', () => {
   const subject = () => { return renderHook(() => useConnections(EXAMPLE_BOARD_1)) };
 
-  it('does not throw an error', () => {
-    const { result } = subject();
-    expect(result.current).toBeDefined();
-  });
-
   describe('when pressing the shuffle button', () => {
-    it('should be different', () => {
+    it('the board should be different', () => {
       const { result, rerender } = subject();
       const boardBefore = result.current.board;
 
@@ -86,6 +81,26 @@ describe('useConnections', () => {
         rerender();
       });
 
+    });
+  });
+
+  describe('when selecting four connected squares', () => {
+    it('should add an entry to found', () => {
+      const { result, rerender } = subject();
+      [1,2,3,4].forEach((id) => {
+        act(() => {
+          result.current.selectSquare(id);
+          rerender();
+        });
+      });
+
+      act(() => {
+        result.current.submitAnswer();
+        rerender();
+      });
+
+      const numberOfGroupsFound = result.current.found.length;
+      expect(numberOfGroupsFound).toBe(1);
     });
   });
 });

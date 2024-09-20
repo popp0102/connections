@@ -11,31 +11,31 @@ export default function GameBoard({ foundSquares, boardSquares, onSquareSelect }
   return (
     <>
       {
-        foundSquares.map((entry) => {
-          const foundRowClasses = `connections-${entry.mode} connections-found-row`;
+        foundSquares.map((square) => {
+          const foundRowClasses = `connections-${square.mode} connections-found-row`;
           return (
-            <div key={entry.category} className={foundRowClasses}>
-              <p className="connections-found-category">{entry.category}</p>
-              <p>{entry.words}</p>
+            <div key={square.category} className={foundRowClasses}>
+              <p className="connections-found-category">{square.category}</p>
+              <p>{square.words}</p>
             </div>
           )
         })
       }
       {
-        boardSquares.map((entry) => {
+        boardSquares.map((square) => {
           let squareClasses = "connections-board-square";
-          if (entry.selected) {
+          if (square.selected) {
             squareClasses += " selected";
           }
 
           return (
-            <button key={entry.id} onClick={() => onSquareSelect(entry.id)} className={squareClasses}>
-                {entry.word}
+            <button key={square.id} onClick={() => onSquareSelect(square.id)} className={squareClasses}>
+                {square.word}
             </button>
           );
         })
       }
     </>
-
   );
 }
+

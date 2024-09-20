@@ -4,7 +4,7 @@ import { type FoundSquare, type BoardSquare } from '@util/Grid'
 
 const SHUFFLE_FUNCTION = () => Math.random() - 0.5;
 
-export default function useConnections(initialBoard: BoardSquare[]) {
+export default function useConnections(initialBoard: BoardSquare[], onGameFinish: () => void) {
   const [board, setBoard] = useState<BoardSquare[]>(initialBoard.sort(SHUFFLE_FUNCTION));
   const [found, setFound] = useState<FoundSquare[]>([]);
 
@@ -61,12 +61,22 @@ export default function useConnections(initialBoard: BoardSquare[]) {
     setBoard((prevBoard) => {
       return [...prevBoard].filter((square) => square.category !== category);
     });
+
+    if (board.length <= 4) {
+      onGameFinish();
+    }
+  }
+
+  function isMaxSelected() {
+    const selectedSquares = board.filter((square) => square.selected) || [];
+    return (selectedSquares.length >=4);
   }
 
   return {
     board: board,
     found: found,
     deselect: handleDeselect,
+    isMaxSelected: isMaxSelected,
     selectSquare: handleSquareSelect,
     shuffleBoard: handleShuffleBoard,
     submitAnswer: handleSubmitAnswer,

@@ -4,7 +4,8 @@ import useConnections from '../../lib/hooks/useConnections';
 import { EXAMPLE_BOARD_1 } from '../__data__/board';
 
 describe('useConnections', () => {
-  const subject = () => { return renderHook(() => useConnections(EXAMPLE_BOARD_1)) };
+  const onGameFinish: jest.MockedFunction<() => void> = jest.fn();
+  const subject = () => { return renderHook(() => useConnections(EXAMPLE_BOARD_1, onGameFinish)) };
 
   describe('when pressing the shuffle button', () => {
     it('the board should be different', () => {
@@ -84,7 +85,7 @@ describe('useConnections', () => {
     });
   });
 
-  describe('when selecting four connected squares', () => {
+  describe('when submitting four connected squares', () => {
     it('should add an entry to found', () => {
       const { result, rerender } = subject();
       [1,2,3,4].forEach((id) => {
@@ -103,5 +104,49 @@ describe('useConnections', () => {
       expect(numberOfGroupsFound).toBe(1);
     });
   });
+
+  describe('when submitting four NON connected squares', () => {
+    it('should not add to found and deselect everything', () => {
+      const { result, rerender } = subject();
+      [1,2,3,5].forEach((id) => {
+        act(() => {
+          result.current.selectSquare(id);
+          rerender();
+        });
+      });
+
+      act(() => {
+        result.current.submitAnswer();
+        rerender();
+      });
+
+      const numberOfGroupsFound = result.current.found.length;
+      expect(numberOfGroupsFound).toBe(0);
+
+      const selectedSquares = result.current.board.filter((square) => square.selected) || [];
+      expect(selectedSquares.length).toBe(0);
+    });
+  });
+
+  describe('when subnmitting fewer than four squares', () => {
+    it('should result in three squares selected', () => {
+      const { result, rerender } = subject();
+      [2,3,4].forEach((id) => {
+        act(() => {
+          result.current.selectSquare(id);
+          rerender();
+        });
+      });
+
+      act(() => {
+        result.current.submitAnswer();
+        rerender();
+      });
+
+      const selectedSquares = result.current.board.filter((square) => square.selected) || [];
+      expect(selectedSquares.length).toBe(3);
+    });
+  });
+
 });
 

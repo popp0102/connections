@@ -1,0 +1,57 @@
+.connections-board {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  min-width: 100%;
+  max-width: 100%;
+
+  .connections-board-square {
+    border: 2px solid black;
+    border-radius: 10px;
+    background: var(--cosmic-teal);
+    color: var(--cosmic-cobalt);
+    cursor: pointer;
+    height: 5rem;
+  }
+
+  .selected {
+    color: var(--cosmic-teal);
+    background: var(--cosmic-cobalt);
+  }
+}
+
+.connections-easy {
+  background: var(--cosmic-yellow);
+}
+
+.connections-medium {
+  background: var(--cosmic-teal);
+}
+
+.connections-hard {
+  background: var(--cosmic-blue);
+}
+
+.connections-difficult {
+  background: var(--cosmic-purple);
+}
+
+.connections-found-row {
+  grid-column: span 4;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 0 1rem;
+  height: 6rem;
+  animation: grow-shrink 1s ease-out forwards;
+
+  .connctions-found-category {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  p {
+    text-align: center;
+  }
+}
+

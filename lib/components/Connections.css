@@ -1,0 +1,45 @@
+.connections-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  padding: 0 1rem;
+
+  .connections-extra-actions {
+    align-self: center;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+
+    button {
+      font-weight: bold;
+      padding: 1rem;
+      border-radius: 32px;
+      background: var(--cosmic-white);
+      color: var(--cosmic-black);
+
+      &:hover:enabled,
+      &:active:enabled {
+        color: var(--cosmic-white);
+        background: var(--cosmic-black);
+      }
+    }
+  }
+}
+
+@media(min-width: 40rem) {
+  .connections-container {
+    min-width: 60%;
+    max-width: 60%;
+
+    .connections-board  {
+      width: 100%;
+
+      .connections-board-square {
+        height: 6rem;
+      }
+    }
+  }
+}
+

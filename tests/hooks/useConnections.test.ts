@@ -14,8 +14,8 @@ describe('useConnections', () => {
 
       act(() => {
         result.current.shuffleBoard();
-        rerender();
       });
+      rerender();
 
       const boardAfter = result.current.board;
       expect(boardBefore.length).toBe(boardAfter.length);
@@ -28,8 +28,8 @@ describe('useConnections', () => {
       const { result, rerender } = subject();
       act(() => {
         result.current.selectSquare(3);
-        rerender();
       });
+      rerender();
 
       const selectedSquares = result.current.board.filter((square) => square.selected) || [];
       expect(selectedSquares.length).toBe(1);
@@ -43,10 +43,14 @@ describe('useConnections', () => {
       const originalStatus = result.current.board[3].selected;
       act(() => {
         result.current.selectSquare(3);
-        rerender();
-        result.current.selectSquare(3);
-        rerender();
       });
+      rerender();
+
+      act(() => {
+        result.current.selectSquare(3);
+      });
+      rerender();
+
       const finalStatus = result.current.board[3].selected;
 
       expect(originalStatus).toBe(finalStatus);
@@ -59,8 +63,8 @@ describe('useConnections', () => {
       [2,3,4,7,9,1,6].forEach((id) => {
         act(() => {
           result.current.selectSquare(id);
-          rerender();
         });
+        rerender();
       });
 
       const selectedSquares = result.current.board.filter((square) => square.selected) || [];
@@ -77,11 +81,12 @@ describe('useConnections', () => {
       const { result, rerender } = subject();
       act(() => {
         result.current.selectSquare(2);
-        rerender();
-        result.current.deselect();
-        rerender();
       });
-
+      rerender();
+      act(() => {
+        result.current.deselect();
+      });
+      rerender();
     });
   });
 
@@ -91,14 +96,14 @@ describe('useConnections', () => {
       [1,2,3,4].forEach((id) => {
         act(() => {
           result.current.selectSquare(id);
-          rerender();
         });
+        rerender();
       });
 
       act(() => {
         result.current.submitAnswer();
-        rerender();
       });
+      rerender();
 
       const numberOfGroupsFound = result.current.found.length;
       expect(numberOfGroupsFound).toBe(1);
@@ -111,14 +116,14 @@ describe('useConnections', () => {
       [1,2,3,5].forEach((id) => {
         act(() => {
           result.current.selectSquare(id);
-          rerender();
         });
+        rerender();
       });
 
       act(() => {
         result.current.submitAnswer();
-        rerender();
       });
+      rerender();
 
       const numberOfGroupsFound = result.current.found.length;
       expect(numberOfGroupsFound).toBe(0);
@@ -134,14 +139,14 @@ describe('useConnections', () => {
       [2,3,4].forEach((id) => {
         act(() => {
           result.current.selectSquare(id);
-          rerender();
         });
+        rerender();
       });
 
       act(() => {
         result.current.submitAnswer();
-        rerender();
       });
+      rerender();
 
       const selectedSquares = result.current.board.filter((square) => square.selected) || [];
       expect(selectedSquares.length).toBe(3);

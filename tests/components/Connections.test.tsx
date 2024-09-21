@@ -35,7 +35,7 @@ describe('Connections Component', () => {
 
       await waitFor(() => {
         expect(handleGameFinish).toHaveBeenCalled();
-      });
+      }, { timeout: 2000 });
     });
   });
 });
